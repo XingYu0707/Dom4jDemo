@@ -28,14 +28,24 @@ public class Dom4jDemo implements XmlDocument {
 		Document document = DocumentHelper.createDocument();//根文件
 		Element employees = document.addElement("employees");//根元素
 		
-		Element employee = employees.addElement("employee");//第二级元素
+		for (int i = 0; i < 5; i++) {
+			Element employee = employees.addElement("employee"+i);//第二级元素
+			Element name = employee.addElement("name"+i);//第三级元素
+			name.setText("ddvip"+i);//元素内容
+			Element sex = employee.addElement("sex"+i);
+			sex.setText("m"+i);
+			Element age = employee.addElement("age"+i);
+			age.setText("29"+i);
+		}
+		
+		
+/*		Element employee = employees.addElement("employee");//第二级元素
 		Element name = employee.addElement("name");//第三级元素
 		name.setText("ddvip");//元素内容
 		Element sex = employee.addElement("sex");
 		sex.setText("m");
 		Element age = employee.addElement("age");
-		age.setText("29");
-		
+		age.setText("29");*/
 		
 		try {
 			Writer fileWriter = new FileWriter(fileName);
@@ -86,7 +96,7 @@ public class Dom4jDemo implements XmlDocument {
 		// TODO Auto-generated method stub
 		String fileName = "F://test.xml" ;
 		Dom4jDemo dom4jDemo = new Dom4jDemo();
-		//dom4jDemo.createXml(fileName);
+		dom4jDemo.createXml(fileName);
 		dom4jDemo.parserXml(fileName);
 
 	}
